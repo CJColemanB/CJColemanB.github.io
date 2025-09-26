@@ -82,22 +82,32 @@ class ProjectSlider {
                 title: "My Personal Website",
                 description: "A responsive personal portfolio website built with HTML, CSS, and JavaScript.",
                 gif: "https://i.imgur.com/YKY28eT.png",
-                demo: "https://cjcolemanb.github.io/personal-website/",
-                code: "https://github.com/CJColemanB/personal-website",
-                technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
-                role: "Frontend Developer",
+                demo: "https://github.com/CJColemanB/CJColemanB.github.io",
+                code: "https://github.com/CJColemanB/CJColemanB.github.io",
+                technologies: ["HTML5", "CSS3", "JavaScript", "GitHub Pages"],
+                role: "Full Stack Developer",
                 date: "September 2025"
             },
             {
                 id: 'project2',
-                title: "E-commerce Platform",
-                description: "A full-stack e-commerce platform with user authentication and payment integration.",
+                title:  "Auction Website",
+                description: "A full-stack flask-based Auction website with user authentication, fully functioning management system, clean and responsive UI, and payment integration.",
                 gif: "https://i.imgur.com/YKY28eT.png",
                 demo: "#",
                 code: "#",
-                technologies: ["React", "Node.js", "MongoDB", "Stripe API"],
+                technologies: ["Python", "Flask", "SQLite", "Stripe API", "HTML5", "CSS3", "JavaScript"],
                 role: "Full Stack Developer",
-                date: "July 2025"
+                date: "July 2025",
+
+                id: 'project3',
+                title: "Language-Based Data Visualizer",
+                description: "A set of python programs that analyze and visualize data from various sources based on language patterns between English and Japanese.",
+                gif: "https://i.imgur.com/YKY28eT.png",
+                demo: "#",
+                code: "https://github.com/CJ-Coleman/COMP2121",
+                technologies: ["Python", "Pandas", "Matplotlib", "Seaborn", "nltk", "wordcloud"],
+                role: "Data Analyst",
+                date: "June 2025"
             }
         ];
         
