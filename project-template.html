@@ -6,6 +6,7 @@
     <title>Project Title | CJ Coleman-Benjamin</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Page Specific styling since it already inherits from styles.css-->
     <style>
         .project-header {
             padding: 6rem 0 3rem;
@@ -128,6 +129,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="stars"></div>
     <div class="twinkling"></div>
@@ -205,11 +207,13 @@
             <div class="social-links">
                 <a href="https://github.com/CJColemanB" aria-label="GitHub"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/cj-coleman-benjamin-144433222/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.instagram.com/cjtechandcode?igsh=ODk2YzNtaXZzNjA3" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </footer>
     
+    <!-- Also added new scripts since the page already inherits from main.js-->
     <script>
         // Set current year in footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
@@ -218,40 +222,42 @@
         const urlParams = new URLSearchParams(window.location.search);
         const projectId = urlParams.get('id');
         
-        // Sample project data - replace with your actual project data
+        // All project data
         const projects = {
             'project1': {
-                title: 'Project One',
-                tagline: 'A brief tagline about project one',
+                title: 'Flask-based Auction Application',
+                tagline: 'A Flask-based Auction Website, designed by a group of developers.',
                 gif: 'path/to/project1.gif',
                 role: 'Full Stack Developer',
-                technologies: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Node.js'],
-                date: 'January 2023',
+                technologies: ['HTML5', 'CSS3', 'JavaScript', 'React', 'SQLite'],
+                date: 'June 2025',
                 demo: '#',
                 code: '#',
                 description: `
-                    <p>This is a detailed description of Project One. It should provide visitors with a comprehensive understanding of what the project is about, the problems it solves, and its key features.</p>
-                    <p>You can include multiple paragraphs, lists, and other HTML elements to structure your content effectively.</p>
+                    <p>During my second year at the University of Leeds, I created a group of 5 friends/coursemates to develop a car auction website. The website was html/css/js oriented, but ran via flask setups and SQLite databases for both sensitive and non-sensitive data.</p>
+                    <p>Using Flask as our backbone, SQLite as our database, Stripe as a payment API, and a fully functional emailing system, we managed to develop a deployable application, and achieving a mark of 89/100.</p>
                 `,
                 skills: `
                     <h3>Technical Stack</h3>
                     <ul>
-                        <li><strong>Frontend:</strong> React, Redux, Styled Components</li>
-                        <li><strong>Backend:</strong> Node.js, Express, MongoDB</li>
-                        <li><strong>DevOps:</strong> Docker, AWS, CI/CD with GitHub Actions</li>
+                        <li><strong>Frontend:</strong> React, HTML, Styled Components</li>
+                        <li><strong>Backend:</strong> Flask, SQLite, Stripe API, JavaScript</li>
+                        <li><strong>DevOps:</strong>CI/CD with GitHub Actions</li>
                     </ul>
                     
                     <h3>Key Features</h3>
                     <ul>
-                        <li>Responsive design that works on all devices</li>
+                        <li>Responsive design that works on most modern devices</li>
+                        <li>Extensive customisability for auctions, such as creating, editing, deleting, setting dates and images, verifaction system, etc.</li>
+                        <li>Multi-tiered account authority system, allowing for employees to set sick days, hours worked. Also allows for managers to edit user data directly.</li>
                         <li>Real-time data synchronization</li>
                         <li>User authentication and authorization</li>
                         <li>Interactive data visualization</li>
                     </ul>
                 `,
                 thanks: `
-                    <p>Special thanks to everyone who contributed to this project, provided feedback, or supported me during development.</p>
-                    <p>I'd also like to acknowledge the following resources and libraries that made this project possible:</p>
+                    <p>Many thanks to my team members (Ali Khairy, Eben Njaravani, Ho Chun Wong, Hodo Hasan and Rameesah Farooqui)</p>
+                    <p>I'd also like to acknowledge the University of Leeds for providing this project opportunity to myself and my groupmates.</p>
                     <ul>
                         <li><a href="#" target="_blank">Library/Framework Name</a> - Brief description of how it was used</li>
                         <li><a href="#" target="_blank">API/Service Name</a> - How it enhanced the project</li>
