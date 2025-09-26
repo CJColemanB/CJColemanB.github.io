@@ -98,7 +98,8 @@ class ProjectSlider {
                 technologies: ["Python", "Flask", "SQLite", "Stripe API", "HTML5", "CSS3", "JavaScript"],
                 role: "Full Stack Developer",
                 date: "July 2025",
-
+            },
+            {
                 id: 'project3',
                 title: "Language-Based Data Visualizer",
                 description: "A set of python programs that analyze and visualize data from various sources based on language patterns between English and Japanese.",
