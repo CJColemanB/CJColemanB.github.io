@@ -1203,4 +1203,11 @@ footer p {
         min-height: 220px;
         height: 220px;
     }
+
+    /* Force active slide to display flex on mobile */
+    .project-slide.active {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
 }
