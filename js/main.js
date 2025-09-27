@@ -80,7 +80,7 @@ class ProjectSlider {
             {
                 id: 'project1',
                 title: "My Personal Website",
-                description: "A responsive personal portfolio website built with HTML, CSS, and JavaScript.",
+                description: "A responsive personal portfolio website built with HTML, CSS, and JavaScript. Currently shows all my projects, skills and hobbies.",
                 gif: "https://i.imgur.com/YKY28eT.png",
                 demo: "https://github.com/CJColemanB/CJColemanB.github.io",
                 code: "https://github.com/CJColemanB/CJColemanB.github.io",
