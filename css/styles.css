@@ -347,6 +347,12 @@ a:hover {
             min-height: 350px;
             height: 350px;
         }
+
+        .project-info {
+            max-height: 320px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
     }
 
 .project-slider {
