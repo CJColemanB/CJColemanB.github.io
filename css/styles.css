@@ -1197,4 +1197,10 @@ footer p {
     .project-info h3 {
         font-size: 1.5rem;
     }
+
+    /* Ensure project slider is visible on mobile */
+    .project-slider {
+        min-height: 220px;
+        height: 220px;
+    }
 }
