@@ -51,6 +51,12 @@ body {
     position: fixed;
     top: 0;
     left: 0;
+        
+        .project-slide {
+            flex-direction: column !important;
+            height: 100% !important;
+            display: flex !important;
+        }
     right: 0;
     bottom: 0;
     width: 100%;
