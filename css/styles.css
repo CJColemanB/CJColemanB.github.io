@@ -341,13 +341,13 @@ a:hover {
     padding: 0 4rem;
 }
 
-.projects-slider-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-top: 3rem;
-}
+
+    @media (max-width: 480px) and (orientation: portrait) {
+        .project-slider {
+            min-height: 350px;
+            height: 350px;
+        }
+    }
 
 .project-slider {
     display: flex;
