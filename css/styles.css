@@ -352,8 +352,22 @@ a:hover {
             max-height: 320px;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #8e44ad #24243e;
         }
-    }
+        .project-info::-webkit-scrollbar {
+            width: 8px;
+            background: #24243e;
+            border-radius: 8px;
+        }
+        .project-info::-webkit-scrollbar-thumb {
+            background: #8e44ad;
+            border-radius: 8px;
+        }
+        .project-info::-webkit-scrollbar-thumb:hover {
+            background: #b388ff;
+            }
+        }
 
 .project-slider {
     display: flex;
