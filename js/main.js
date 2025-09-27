@@ -446,6 +446,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize project slider
     const projectSlider = new ProjectSlider();
 
+        // Animated scrollbar for mobile portrait mode
+        function enableAnimatedScrollbar() {
+            const infos = document.querySelectorAll('.project-info');
+            infos.forEach(info => {
+                let scrollTimeout;
+                info.addEventListener('scroll', () => {
+                    info.classList.add('scrolling');
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        info.classList.remove('scrolling');
+                    }, 400);
+                });
+            });
+        }
+        enableAnimatedScrollbar();
+
     // Animation on scroll
     function animateOnScroll() {
         const elements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .slide-in-up');
