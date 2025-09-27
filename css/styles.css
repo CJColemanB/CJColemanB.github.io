@@ -349,8 +349,8 @@ a:hover {
         }
 
         .project-info {
-            max-height: 320px;
-            overflow-y: auto;
+            max-height: 300px;
+            overflow-y: auto !important;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: thin;
             scrollbar-color: #8e44ad #24243e;
