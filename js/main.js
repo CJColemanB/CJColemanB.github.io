@@ -198,7 +198,7 @@ class ProjectSlider {
         slider.style.minHeight = '500px'; // Adjust based on your needs
     }
     
-    showSlide(index, direction = 'next') {
+    showSlide(index, direction = 'left') {
         if (this.isAnimating || !this.slides.length) return;
         
         // Handle wrap-around for infinite sliding
@@ -215,8 +215,6 @@ class ProjectSlider {
         const currentSlide = this.currentSlide >= 0 ? this.slides[this.currentSlide] : null;
         const nextSlide = this.slides[index];
         
-        console.log(`Showing slide ${index}, isInitialLoad: ${isInitialLoad}`);
-        
         // Hide all slides first
         this.slides.forEach(slide => {
             slide.classList.remove('active');
@@ -225,25 +223,44 @@ class ProjectSlider {
             slide.style.transform = 'translateX(100%)';
         });
         
+        // If not initial load, animate out current slide
+        if (!isInitialLoad && currentSlide) {
+            currentSlide.style.display = 'flex';
+            currentSlide.style.opacity = '1';
+            currentSlide.style.transform = 'translateX(0)';
+            currentSlide.classList.remove('active');
+            if (direction === 'left') {
+                currentSlide.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+                currentSlide.style.transform = 'translateX(-100%)';
+            } else {
+                currentSlide.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+                currentSlide.style.transform = 'translateX(100%)';
+            }
+            setTimeout(() => {
+                currentSlide.style.opacity = '0';
+                currentSlide.style.display = 'none';
+            }, 500);
+        }
+        
         // Show the target slide
         nextSlide.style.display = 'flex';
         nextSlide.classList.add('active');
-        
-        // If it's the initial load, just show the first slide without animation
-        if (isInitialLoad) {
+        nextSlide.style.opacity = '0';
+        nextSlide.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+        if (!isInitialLoad) {
+            if (direction === 'left') {
+                nextSlide.style.transform = 'translateX(100%)';
+            } else {
+                nextSlide.style.transform = 'translateX(-100%)';
+            }
+            setTimeout(() => {
+                nextSlide.style.opacity = '1';
+                nextSlide.style.transform = 'translateX(0)';
+            }, 50);
+        } else {
             nextSlide.style.opacity = '1';
             nextSlide.style.transform = 'translateX(0)';
-            this.currentSlide = index;
-            this.isAnimating = false;
-            console.log('Initial slide shown');
-            return;
         }
-        
-        // Animate the slide in
-        setTimeout(() => {
-            nextSlide.style.opacity = '1';
-            nextSlide.style.transform = 'translateX(0)';
-        }, 50);
         
         // Update current slide index
         this.currentSlide = index;
@@ -255,45 +272,34 @@ class ProjectSlider {
     }
     
     nextSlide() {
-        this.showSlide(this.currentSlide + 1, 'next');
+        this.showSlide(this.currentSlide + 1, 'left');
     }
     
     prevSlide() {
-        this.showSlide(this.currentSlide - 1, 'prev');
+        this.showSlide(this.currentSlide - 1, 'right');
     }
     
     startAutoSlide() {
         if (this.autoSlideInterval) clearInterval(this.autoSlideInterval);
-        this.autoSlideInterval = setInterval(() => this.nextSlide(), this.autoSlideDelay);
+        this.autoSlideInterval = setInterval(() => this.nextSlide('left'), 10000); // 10 seconds
     }
-    
     resetAutoSlide() {
         if (this.autoSlideInterval) {
             clearInterval(this.autoSlideInterval);
             this.autoSlideInterval = null;
         }
     }
-    
     setupEventListeners() {
         if (!this.slider) return;
-        
-        // Navigation arrows
-        const leftArrow = document.querySelector('.left-arrow');
-        const rightArrow = document.querySelector('.right-arrow');
-        
-        if (leftArrow) {
-            leftArrow.addEventListener('click', () => this.handleArrowClick('prev'));
-        }
-        
-        if (rightArrow) {
-            rightArrow.addEventListener('click', () => this.handleArrowClick('next'));
-        }
-        
         // Touch events for mobile
-        this.slider.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: true });
-        this.slider.addEventListener('touchmove', (e) => this.handleTouchMove(e), { passive: false });
-        this.slider.addEventListener('touchend', () => this.handleTouchEnd(), { passive: true });
-        
+        this.slider.addEventListener('touchstart', (e) => { this.handleTouchStart(e); this.resetAutoSlide(); }, { passive: true });
+        this.slider.addEventListener('touchmove', (e) => { this.handleTouchMove(e); this.resetAutoSlide(); }, { passive: false });
+        this.slider.addEventListener('touchend', (e) => { this.handleTouchEnd(e); this.startAutoSlide(); }, { passive: true });
+        // Mouse drag events for desktop
+        this.slider.addEventListener('mousedown', (e) => { this.handleMouseDown(e); this.resetAutoSlide(); });
+        this.slider.addEventListener('mousemove', (e) => { this.handleMouseMove(e); this.resetAutoSlide(); });
+        this.slider.addEventListener('mouseup', (e) => { this.handleMouseUp(); this.startAutoSlide(); });
+        this.slider.addEventListener('mouseleave', (e) => { this.handleMouseUp(); this.startAutoSlide(); });
         // Pause auto-slide on hover
         this.slider.addEventListener('mouseenter', () => this.resetAutoSlide());
         this.slider.addEventListener('mouseleave', () => this.startAutoSlide());
@@ -336,23 +342,44 @@ class ProjectSlider {
     // Touch end handler
     handleTouchEnd() {
         if (!this.touchStartX || !this.touchEndX) return;
-        
         const touchDiff = this.touchStartX - this.touchEndX;
         const minSwipeDistance = 50;
-        
         if (touchDiff > minSwipeDistance) {
             // Swipe left - go to next slide
-            this.nextSlide();
+            this.nextSlide('left');
         } else if (touchDiff < -minSwipeDistance) {
             // Swipe right - go to previous slide
-            this.prevSlide();
+            this.prevSlide('right');
         }
-        
         // Reset touch values
         this.touchStartX = null;
         this.touchEndX = null;
-        
         // Reset auto slide timer
+        this.resetAutoSlide();
+        this.startAutoSlide();
+    }
+    // Mouse drag handlers
+    handleMouseDown(e) {
+        this.isMouseDown = true;
+        this.mouseStartX = e.clientX;
+        this.mouseEndX = e.clientX;
+    }
+    handleMouseMove(e) {
+        if (!this.isMouseDown) return;
+        this.mouseEndX = e.clientX;
+    }
+    handleMouseUp() {
+        if (!this.isMouseDown) return;
+        const dragDiff = this.mouseStartX - this.mouseEndX;
+        const minDragDistance = 50;
+        if (dragDiff > minDragDistance) {
+            this.nextSlide('left');
+        } else if (dragDiff < -minDragDistance) {
+            this.prevSlide('right');
+        }
+        this.isMouseDown = false;
+        this.mouseStartX = null;
+        this.mouseEndX = null;
         this.resetAutoSlide();
         this.startAutoSlide();
     }
