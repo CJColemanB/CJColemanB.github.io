@@ -1,5 +1,5 @@
 # CJColemanB.github.io
-My Portfolio Website.
+The link to the website can be found [here](cjcolemanb.github.io)
 
 ## Technologies Used
 - Mainly used HTML/CSS/Javascript due to the nature of the website being a simple portfolio website. Extensive backend wasn't a necessity, so a simple HTML website with focus on CSS styling was the ideal.
