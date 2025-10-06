@@ -1,0 +1,7 @@
+Just a to do list for functionalities that should be added to the website
+
+- on the hobbies section, implement functionality that allows users to tap/click on a hobby
+and see a relevant image or description regarding it.
+
+- on the projects page, implement functionality that tells users that they can "swipe to see
+more"
