@@ -1,4 +1,6 @@
-/* Base Styles & Variables */
+/* ====================================
+   Base Styles & Variables
+   ==================================== */
 :root {
     --primary-color: #0f0c29;
     --secondary-color: #302b63;
@@ -8,22 +10,9 @@
     --spacing: 2rem;
     --border-radius: 8px;
     --transition: all 0.3s ease;
-}
-
-@keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
-}
-
-@keyframes move-clouds-back {
-    from {background-position:0 0;}
-    to {background-position:10000px 0;}
-}
-
-@keyframes twinkle {
-    0% { opacity: 0.2; }
-    50% { opacity: 0.8; }
-    100% { opacity: 0.2; }
+    --accent-gradient: linear-gradient(90deg, #8e44ad, #3498db);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-blur: blur(10px);
 }
 
 /* Base Styles */
@@ -41,10 +30,10 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-        background:
-            linear-gradient(135deg, #1a1440 0%, #302b63 100%), /* purple gradient */
-            url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="40" height="40" fill="none"/><circle cx="20" cy="20" r="1.5" fill="%238e44ad" opacity="0.15"/><circle cx="10" cy="10" r="1" fill="%238e44ad" opacity="0.10"/><circle cx="30" cy="30" r="1" fill="%238e44ad" opacity="0.10"/></svg>') repeat,
-            url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/w8AAgMBgQK1nAAAAABJRU5ErkJggg==') repeat; /* subtle noise texture */
+    background:
+        linear-gradient(135deg, #1a1440 0%, #302b63 100%), /* purple gradient */
+        url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="40" height="40" fill="none"/><circle cx="20" cy="20" r="1.5" fill="%238e44ad" opacity="0.15"/><circle cx="10" cy="10" r="1" fill="%238e44ad" opacity="0.10"/><circle cx="30" cy="30" r="1" fill="%238e44ad" opacity="0.10"/></svg>') repeat,
+        url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/w8AAgMBgQK1nAAAAABJRU5ErkJggg==') repeat; /* subtle noise texture */
     position: relative;
     overflow-x: hidden;
 }
@@ -81,7 +70,7 @@ h2::after {
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, #8e44ad, #3498db);
+    background: var(--accent-gradient);
     border-radius: 2px;
 }
 
@@ -113,14 +102,18 @@ a:hover {
     position: relative;
 }
 
+/* ====================================
+   Components
+   ==================================== */
+
 /* Navigation */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(15, 12, 41, 0.9);
-    backdrop-filter: blur(10px);
+    background: rgba(15, 12, 41, 0.9); 
+    backdrop-filter: var(--glass-blur);
     z-index: 1000;
     padding: 1rem 0;
     transition: var(--transition);
@@ -141,7 +134,7 @@ a:hover {
     font-size: 1.8rem;
     font-weight: 800;
     color: #fff;
-    background: linear-gradient(90deg, #8e44ad, #3498db);
+    background: var(--accent-gradient);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -170,7 +163,7 @@ a:hover {
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #8e44ad, #3498db);
+    background: var(--accent-gradient); 
     transition: width 0.3s ease;
 }
 
@@ -227,7 +220,7 @@ a:hover {
 .btn {
     display: inline-block;
     padding: 0.8rem 2rem;
-    background: linear-gradient(90deg, #8e44ad, #3498db);
+    background: var(--accent-gradient); 
     color: #fff;
     border: none;
     border-radius: 50px;
@@ -278,7 +271,7 @@ a:hover {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: linear-gradient(45deg, #8e44ad, #3498db);
+    background: var(--accent-gradient); 
     position: relative;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(142, 68, 173, 0.3);
@@ -320,167 +313,23 @@ a:hover {
     padding: 0 4rem;
 }
 
-
-    @media (max-width: 480px) and (orientation: portrait) {
-        .project-slider {
-            min-height: 350px;
-            height: 350px;
-        }
-
-        .project-info {
-            max-height: 300px;
-            overflow-y: auto !important;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-            scrollbar-color: #8e44ad #24243e;
-        }
-        /* Custom scrollbar overlay for mobile */
-        .project-info::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 2px;
-            width: 6px;
-            height: 100%;
-            background: #24243e;
-            border-radius: 8px;
-            opacity: 0.7;
-            pointer-events: none;
-            z-index: 2;
-        }
-        .project-info.scrolling::after {
-            background: linear-gradient(to bottom, #8e44ad 40%, #b388ff 100%);
-            opacity: 1;
-        }
-        .project-info::-webkit-scrollbar {
-            width: 8px;
-            background: #24243e;
-            border-radius: 8px;
-        }
-        .project-info::-webkit-scrollbar-thumb {
-            background: #8e44ad;
-            border-radius: 8px;
-        }
-        .project-info::-webkit-scrollbar-thumb:hover {
-            background: #b388ff;
-            }
-        }
-
 .project-slider {
-    display: flex;
-    overflow-y: auto;
     border-radius: var(--border-radius);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     position: relative;
-    min-height: 400px;
-    height: 400px;
-    flex: 1;
+    min-height: 400px; 
     perspective: 1000px;
     touch-action: pan-y;
     -webkit-overflow-scrolling: touch;
     user-select: none;
     cursor: grab;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
+    background: var(--glass-bg); 
+    backdrop-filter: var(--glass-blur); 
+    overflow: hidden; 
 }
 
 .project-slider:active {
-    cursor: grabbing; /* Show grabbing cursor when dragging */
-}
-
-/* Arrow click animation */
-@keyframes arrowClick {
-    0% { transform: translateY(-50%) scale(1); }
-    50% { transform: translateY(-50%) scale(0.9); }
-    100% { transform: translateY(-50%) scale(1); }
-}
-
-.nav-arrow.arrow-clicked {
-    animation: arrowClick 0.2s ease-in-out;
-}
-
-.project-slide {
-    min-width: 100%;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    display: none;
-    flex-direction: row;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    will-change: transform, opacity;
-    touch-action: pan-y;
-    user-select: none;
-}
-
-/* Disable hover effects on touch devices */
-@media (hover: hover) and (pointer: fine) {
-    .project-slide {
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-}
-
-/* Slide animations */
-@keyframes slideInFromRight {
-    from {
-        transform: translateX(100%) scale(0.95);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0) scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes slideInFromLeft {
-    from {
-        transform: translateX(-100%) scale(0.95);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0) scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes slideOutToLeft {
-    from {
-        transform: translateX(0) scale(1);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(-100%) scale(0.95);
-        opacity: 0;
-    }
-}
-
-@keyframes slideOutToRight {
-    from {
-        transform: translateX(0) scale(1);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(100%) scale(0.95);
-        opacity: 0;
-    }
-}
-
-/* Touch feedback for mobile devices */
-.project-slide.active {
-    opacity: 1;
-    position: relative;
-    transform: translateX(0);
-    display: flex !important;
-    visibility: visible;
+    cursor: grabbing;
 }
 
 .project-gif-container {
@@ -671,37 +520,6 @@ a:hover {
     font-size: 1.1rem;
 }
 
-.slider-arrow {
-    background: linear-gradient(135deg, rgba(142, 68, 173, 0.8), rgba(52, 152, 219, 0.8));
-    border: none;
-    color: #fff;
-    width: 60px;
-    height: 400px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.8rem;
-    transition: all 0.3s ease;
-    z-index: 10;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(142, 68, 173, 0.3);
-    flex-shrink: 0;
-}
-
-.slider-arrow:hover {
-    background: linear-gradient(135deg, var(--accent-color), #3498db);
-    transform: scale(1.05);
-    box-shadow: 0 12px 40px rgba(142, 68, 173, 0.6);
-    border-color: rgba(255, 255, 255, 0.4);
-}
-
-.slider-arrow:active {
-    transform: scale(0.95);
-}
-
 /* Back to Home Section */
 .back-to-home-section {
     padding: 4rem 0;
@@ -712,73 +530,6 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-@media (max-width: 992px) {
-    .projects-slider-container {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .slider-arrow {
-        width: 100%;
-        height: 50px;
-        font-size: 1.4rem;
-    }
-    
-    .project-slide {
-        flex-direction: column;
-        min-height: auto;
-    }
-    
-    .project-gif-container {
-        flex: 0 0 300px;
-        width: 100%;
-    }
-    
-    .project-info {
-        padding: 2rem;
-    }
-    
-    .project-links {
-        flex-direction: column;
-    }
-    
-    .project-details-btn,
-    .project-demo-btn {
-        width: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-    .projects-container {
-        padding: 0 1.5rem;
-    }
-    
-    .projects-slider-container {
-        gap: 0.5rem;
-    }
-    
-    .slider-arrow {
-        height: 40px;
-        font-size: 1.2rem;
-    }
-    
-    .project-slider {
-        height: 350px;
-    }
-    
-    .project-info {
-        padding: 1.5rem;
-    }
-    
-    .project-info h3 {
-        font-size: 1.6rem;
-    }
-    
-    .project-meta {
-        padding: 1rem 0;
-    }
 }
 
 /* Experience Section */
@@ -793,7 +544,7 @@ a:hover {
     content: '';
     position: absolute;
     width: 2px;
-    background: linear-gradient(to bottom, #8e44ad, #3498db);
+    background: var(--accent-gradient); 
     top: 0;
     bottom: 0;
     left: 50%;
@@ -817,8 +568,8 @@ a:hover {
 
 .timeline-content {
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
+    background: var(--glass-bg); 
+    backdrop-filter: var(--glass-blur); 
     border-radius: var(--border-radius);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     position: relative;
@@ -883,8 +634,8 @@ a:hover {
 }
 
 .hobby-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
+    background: var(--glass-bg); 
+    backdrop-filter: var(--glass-blur); 
     border-radius: var(--border-radius);
     padding: 2rem;
     text-align: center;
@@ -954,11 +705,11 @@ a:hover {
     display: flex;
     align-items: flex-start;
     margin-bottom: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--glass-bg); 
+    backdrop-filter: var(--glass-blur); 
     padding: 1.5rem;
     border-radius: var(--border-radius);
     transition: var(--transition);
-    backdrop-filter: blur(10px);
 }
 
 .contact-item:hover {
@@ -980,10 +731,10 @@ a:hover {
 
 .contact-form {
     flex: 1;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--glass-bg); 
+    backdrop-filter: var(--glass-blur); 
     padding: 2rem;
     border-radius: var(--border-radius);
-    backdrop-filter: blur(10px);
 }
 
 .form-group {
@@ -994,7 +745,7 @@ a:hover {
 .form-group textarea {
     width: 100%;
     padding: 0.8rem 1rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.05); 
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius);
     color: #fff;
@@ -1042,7 +793,7 @@ footer p {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--glass-bg);
     color: #fff;
     font-size: 1.2rem;
     transition: var(--transition);
@@ -1053,7 +804,10 @@ footer p {
     transform: translateY(-3px);
 }
 
-/* Animations */
+/* ====================================
+   Animations
+   ==================================== */
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -1066,18 +820,63 @@ footer p {
 }
 
 @keyframes float {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
-    100% {
-        transform: translateY(0);
-    }
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
 }
 
-/* Responsive Styles */
+
+/* ====================================
+   Styles Moved from main.js
+   ==================================== */
+
+.project-slide {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0; /* All slides are invisible by default */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex; /* All slides are flex, ready to be shown */
+    z-index: 1; /* Non-active slides are behind */
+}
+
+.project-slide.active {
+    opacity: 1; /* The active slide is visible */
+    transform: translateX(0);
+    z-index: 2; /* Active slide is on top */
+}
+
+/* "View All Projects" button on Home Page */
+.view-all-projects-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50; 
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: 500;
+}
+
+.view-all-projects-btn:hover {
+    background-color: #45a049; /* Example hover color */
+    transform: translateY(-2px);
+}
+
+/* Animated scrollbar from main.js */
+.project-info.scrolling::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+/* ====================================
+   Responsive Media Queries
+   ==================================== */
+
+/* --- 992px Breakpoint --- */
 @media (max-width: 992px) {
     .about-content,
     .contact-content {
@@ -1102,24 +901,57 @@ footer p {
         left: 0;
     }
     
-    .timeline-item::after {
-        left: 20px;
-    }
-    
+    .timeline-item::after,
     .timeline-item:nth-child(even)::after {
         left: 20px;
     }
     
+    /* Project slider responsive */
     .project-slide {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .project-gif-container {
+        flex: 0 0 300px; /* Give GIF a fixed height */
+        width: 100%;
+    }
+    
+    .project-info {
+        padding: 2rem;
+    }
+    
+    .project-links {
         flex-direction: column;
     }
     
-    .project-video {
-        height: 250px;
+    .project-details-btn,
+    .project-demo-btn {
+        width: 100%;
     }
 }
 
+/* --- 768px Breakpoint --- */
 @media (max-width: 768px) {
+    h1 {
+        font-size: 2.8rem;
+    }
+    
+    .hero h2 {
+        font-size: 1.4rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 80%;
+        margin-bottom: 1rem;
+    }
+
+    /* Mobile Nav */
     .hamburger {
         display: block;
     }
@@ -1138,12 +970,12 @@ footer p {
     
     .nav-links {
         position: fixed;
-        top: 80px;
+        top: 80px; /* Adjust to match navbar height */
         left: -100%;
         width: 100%;
         flex-direction: column;
         background: rgba(15, 12, 41, 0.95);
-        backdrop-filter: blur(10px);
+        backdrop-filter: var(--glass-blur);
         padding: 2rem 0;
         transition: 0.3s ease-in-out;
         z-index: 999;
@@ -1158,34 +990,29 @@ footer p {
         text-align: center;
     }
     
-    h1 {
-        font-size: 2.8rem;
-    }
-    
-    .hero h2 {
-        font-size: 1.4rem;
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .btn {
-        width: 80%;
-        margin-bottom: 1rem;
-    }
-    
+    /* Project slider responsive */
     .projects-container {
-        padding: 0 1rem;
+        padding: 0 1.5rem;
     }
     
-    .slider-arrow {
-        height: 35px;
-        font-size: 1rem;
+    .project-slider {
+        min-height: 550px; 
+    }
+    
+    .project-info {
+        padding: 1.5rem;
+    }
+    
+    .project-info h3 {
+        font-size: 1.6rem;
+    }
+    
+    .project-meta {
+        padding: 1rem 0;
     }
 }
 
+/* --- 480px Breakpoint --- */
 @media (max-width: 480px) {
     h1 {
         font-size: 2.2rem;
@@ -1199,10 +1026,7 @@ footer p {
         padding: 4rem 0;
     }
     
-    .hobbies-grid {
-        grid-template-columns: 1fr;
-    }
-    
+    .hobbies-grid,
     .hobby-gallery {
         grid-template-columns: 1fr;
     }
@@ -1215,16 +1039,38 @@ footer p {
         font-size: 1.5rem;
     }
 
-    /* Ensure project slider is visible on mobile */
     .project-slider {
-        min-height: 220px;
-        height: 220px;
+        min-height: 600px;
+    }
+}
+
+/* --- Mobile Portrait Scrollbar (Project Slider) --- */
+@media (max-width: 480px) and (orientation: portrait) {
+    .project-slider {
+        min-height: 600px; 
     }
 
-    /* Force active slide to display flex on mobile */
-    .project-slide.active {
-        display: flex !important;
-        opacity: 1 !important;
-        visibility: visible !important;
+    .project-info {
+        max-height: 300px; /* Set a max height */
+        overflow-y: auto !important; /* Force scroll */
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: #8e44ad #24243e;
     }
+
+    .project-info::-webkit-scrollbar {
+        width: 8px;
+        background: #24243e;
+        border-radius: 8px;
+    }
+
+    .project-info::-webkit-scrollbar-thumb {
+        background: #8e44ad;
+        border-radius: 8px;
+    }
+
+    .project-info::-webkit-scrollbar-thumb:hover {
+        background: #b388ff;
+    }
+
 }
