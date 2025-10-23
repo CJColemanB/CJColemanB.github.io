@@ -1,4 +1,4 @@
-// js/main.js (FINAL CORRECTED)
+// js/main.js (UPDATED)
 
 // This class is now *only* responsible for the slider.
 class ProjectSlider {
@@ -69,10 +69,7 @@ class ProjectSlider {
                         </div>
                     </div>
                     <div class="project-links">
-                        <a href="${project.demo}" target="_blank" class="project-details-btn">
-                            <i class="fas fa-external-link-alt"></i> View Demo
-                        </a>
-                        <a href="${project.code}" target="_blank" class="project-demo-btn">
+                        <a href="${project.code}" target="_blank" class="project-details-btn">
                             <i class="fab fa-github"></i> View Code
                         </a>
                     </div>
@@ -112,7 +109,7 @@ class ProjectSlider {
         }
         
         // 2. Make the NEXT slide active (brings z-index to 2)
-        nextSlide.classList.add('.active');
+        nextSlide.classList.add('active');
 
         // 3. Animate slides
         setTimeout(() => {

@@ -249,6 +249,28 @@ a:hover {
     color: #fff;
 }
 
+/* New: Outline GitHub Button */
+.btn-outline-github {
+    background: transparent; /* No background fill */
+    color: var(--color-primary-light); /* Or a specific gray/white that looks good with GitHub */
+    border: 2px solid var(--color-primary-light); /* Or a specific border color */
+}
+
+.btn-outline-github:hover {
+    background: #24292e; /* GitHub dark background */
+    color: #ffffff; /* White text */
+    border-color: #24292e;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-outline-github i {
+    color: var(--color-primary-light); /* Icon color */
+}
+
+.btn-outline-github:hover i {
+    color: #ffffff; /* Icon color on hover */
+}
+
 /* About Section */
 .about-content {
     display: flex;

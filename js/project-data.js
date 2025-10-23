@@ -5,11 +5,8 @@ const projects = {
         title: "My Personal Website",
         tagline: "A responsive personal portfolio website built with HTML, CSS, and JavaScript.",
         description: "<p>A responsive personal portfolio website built with HTML, CSS, and JavaScript. Currently shows all my projects, skills and hobbies.</p>",
-        
-        // --- THIS IS THE CORRECT RELATIVE PATH ---
         gif: "Images/Projects/HomePage.png", 
-        
-        demo: "https://github.com/CJColemanB/CJColemanB.github.io",
+        demo: "#",
         code: "https://github.com/CJColemanB/CJColemanB.github.io",
         technologies: ["HTML5", "CSS3", "JavaScript", "GitHub Pages"],
         role: "Full Stack Developer",
@@ -27,7 +24,7 @@ const projects = {
         title: "Auction Website",
         tagline: "A full-stack flask-based Auction website.",
         description: "<p>A full-stack flask-based Auction website with user authentication, fully functioning management system, clean and responsive UI, and payment integration.</p>",
-        gif: "https://i.imgur.com/YKY28eT.png",
+        gif: "Images/Projects/AuctionPage.png",
         demo: "#",
         code: "https://github.com/ne-njaravani/Car-Auction-Web-App",
         technologies: ["Python", "Flask", "SQLite", "Stripe API", "HTML5", "CSS3", "JavaScript"],
@@ -35,6 +32,8 @@ const projects = {
         date: "July 2025",
         skills: `<h3>Key Features</h3>
                  <ul>
+                    <li>Teamwork-based project using Agile methodologies.</li>
+                    <li>Responsive UI built with HTML, CSS, and JavaScript.</li>
                     <li>User authentication (register, login, logout).</li>
                     <li>Stripe API integration for payments.</li>
                     <li>Full CRUD (Create, Read, Update, Delete) functionality for auction listings.</li>
@@ -68,7 +67,7 @@ const projects = {
         title: "Device Logging Tool",
         tagline: "Flask-based web app for logging devices",
         description: "<p>A full-Stack Flask-based web application used to log devices being lended by Streatham and Clapham High School.</p>",
-        gif: "https://i.imgur.com/YKY28eT.png",
+        gif: "Images/Projects/DeviceLoggerPage.png",
         demo: "#",
         code: "https://github.com/CJ-Coleman/COMP2121",
         technologies: ["Python", "Pandas", "OpenPyXL", "Flask", "HTML", "CSS", "JavaScript", "SQLite"],

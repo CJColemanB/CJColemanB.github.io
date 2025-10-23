@@ -1,5 +1,10 @@
+// js/project-loader.js (NEW, SIMPLIFIED VERSION)
+
 // Set current year in footer
-document.getElementById('current-year').textContent = new Date().getFullYear();
+const currentYearEl = document.getElementById('current-year');
+if (currentYearEl) {
+    currentYearEl.textContent = new Date().getFullYear();
+}
 
 // Parse URL parameters
 const urlParams = new URLSearchParams(window.location.search);
@@ -7,10 +12,11 @@ const projectId = urlParams.get('id');
 
 // Load project data
 function loadProject() {
+    // 'projects' is loaded from project-data.js
     const project = projects[projectId]; 
     
     if (!project) {
-        // Redirect to 404 or home page if project not found
+        // Redirect if project ID is invalid
         window.location.href = 'index.html';
         return;
     }
@@ -18,7 +24,7 @@ function loadProject() {
     // Update page title
     document.title = `${project.title} | CJ Coleman-Benjamin`;
     
-    // Update header
+    // --- Update Header ---
     document.getElementById('project-title').textContent = project.title;
     document.getElementById('project-tagline').textContent = project.tagline;
     
@@ -29,7 +35,7 @@ function loadProject() {
         projectGif.alt = `${project.title} Demo`;
     }
     
-    // Update project meta
+    // --- Update project meta ---
     document.getElementById('project-role').textContent = project.role;
     document.getElementById('project-date').textContent = project.date;
     
@@ -41,21 +47,40 @@ function loadProject() {
             .join('');
     }
     
-    // Update links
-    document.getElementById('live-demo').href = project.demo;
-    document.getElementById('source-code').href = project.code;
+    // --- THIS IS THE FIX ---
+    // Safely update *only* the 'source-code' button
+    const codeLink = document.getElementById('source-code');
+    if (codeLink) {
+        if (project.code && project.code !== "#") {
+            codeLink.href = project.code;
+            codeLink.style.display = 'inline-flex'; // Show it
+        } else {
+            codeLink.style.display = 'none'; // Hide if no link
+        }
+    }
     
+    // --- THIS IS THE DATA THAT WASN'T LOADING ---
     // Update content sections
-    document.getElementById('project-description').innerHTML = project.description;
-    document.getElementById('project-skills').innerHTML = project.skills;
+    const descriptionEl = document.getElementById('project-description');
+    if (descriptionEl && project.description) {
+        descriptionEl.innerHTML = project.description;
+    }
+
+    const skillsEl = document.getElementById('project-skills');
+    if (skillsEl && project.skills) {
+        skillsEl.innerHTML = project.skills;
+    }
     
     // Hide 'Acknowledgements' section if there is no 'thanks' data
     const thanksSection = document.getElementById('thanks-section');
     const thanksDiv = document.getElementById('project-thanks');
-    if (project.thanks && project.thanks.trim() !== '') {
-        thanksDiv.innerHTML = project.thanks;
-    } else {
-        thanksSection.style.display = 'none';
+    
+    if (thanksSection && thanksDiv) {
+        if (project.thanks && project.thanks.trim() !== '') {
+            thanksDiv.innerHTML = project.thanks;
+        } else {
+            thanksSection.style.display = 'none';
+        }
     }
 }
 
@@ -68,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'index.html';
     } else {
         // Data failed to load
-        console.error('Project data is missing.');
+        console.error('Project data is missing. Make sure project-data.js is loaded.');
         document.body.innerHTML = '<h1>Error: Project data could not be loaded. <a href="index.html">Go Home</a></h1>';
     }
 });
