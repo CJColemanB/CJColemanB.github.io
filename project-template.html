@@ -15,11 +15,76 @@
     <div class="stars"></div>
     <div class="twinkling"></div>
     
-    <main class="project-content">
+    <header class="project-header">
+        <div class="container">
+            <a href="index.html" class="back-to-home">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            <h1 id="project-title">Loading Project...</h1>
+            <p id="project-tagline"></p>
+        </div>
+    </header>
     
+    <main class="project-content">
+        <section class="project-hero">
+            <div class="project-gif">
+                <img id="project-gif" src="" alt="Project Demo">
+            </div>
+            <div class="project-overview">
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <h4>Role</h4>
+                        <p id="project-role"></p>
+                    </div>
+                    <div class="meta-item">
+                        <h4>Technologies</h4>
+                        <div class="meta-tags" id="project-technologies">
+                            </div>
+                    </div>
+                    <div class="meta-item">
+                        <h4>Date</h4>
+                        <p id="project-date"></p>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="#" id="live-demo" class="btn" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    </a>
+                    <a href="#" id="source-code" class="btn btn-outline" target="_blank">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="project-section">
+            <h2>About the Project</h2>
+            <div id="project-description">
+                </div>
+        </section>
+        
+        <section class="project-section">
+            <h2>Technologies & Skills</h2>
+            <div id="project-skills">
+                </div>
+        </section>
+        
+        <section class="project-section" id="thanks-section">
+            <h2>Acknowledgements</h2>
+            <div id="project-thanks">
+                </div>
+        </section>
     </main>
     
     <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> CJ Coleman-Benjamin. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/CJColemanB" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/cj-coleman-benjamin-144433222/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/cjtechandcode?igsh=ODk2YzNtaXZzNjA3" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
     </footer>
     
     <script src="js/project-data.js"></script>

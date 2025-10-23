@@ -1,3 +1,6 @@
+// js/main.js (FINAL CORRECTED)
+
+// This class is now *only* responsible for the slider.
 class ProjectSlider {
     constructor() {
         this.slider = document.querySelector('.project-slider');
@@ -42,7 +45,9 @@ class ProjectSlider {
             
             slide.innerHTML = `
                 <div class="project-gif-container">
-                    <img src="${project.gif}" alt="${project.title} Demo" class="project-gif">
+                    <a href="project-template.html?id=${project.id}" aria-label="View project details for ${project.title}">
+                        <img src="${project.gif}" alt="${project.title} Demo" class="project-gif">
+                    </a>
                 </div>
                 <div class="project-info">
                     <h3>${project.title}</h3>
@@ -66,9 +71,6 @@ class ProjectSlider {
                     <div class="project-links">
                         <a href="${project.demo}" target="_blank" class="project-details-btn">
                             <i class="fas fa-external-link-alt"></i> View Demo
-                        </a>
-                        <a href="project-template.html?id=${project.id}" class="project-demo-btn btn-outline">
-                            <i class="fas fa-info-circle"></i> View Details
                         </a>
                         <a href="${project.code}" target="_blank" class="project-demo-btn">
                             <i class="fab fa-github"></i> View Code
@@ -100,21 +102,21 @@ class ProjectSlider {
         const currentSlide = this.currentSlide >= 0 ? this.slides[this.currentSlide] : null;
         const nextSlide = this.slides[index];
         
-        // --- Cross-Fade Animation ---
+        // --- New Animation Logic (Cross-fade) ---
 
-        // 1. Set up the next slide's starting position
+        // 1. Set up the NEXT slide's starting position
         if (!isInitialLoad) {
             nextSlide.style.transition = 'none'; // No animation yet
             nextSlide.style.transform = direction === 'left' ? 'translateX(100%)' : 'translateX(-100%)';
             nextSlide.style.opacity = '0';
         }
         
-        // 2. Make the next slide active (brings z-index to 2)
-        nextSlide.classList.add('active');
+        // 2. Make the NEXT slide active (brings z-index to 2)
+        nextSlide.classList.add('.active');
 
         // 3. Animate slides
         setTimeout(() => {
-            // Animate out the current slide (if it exists)
+            // Animate OUT the CURRENT slide (if it exists)
             if (!isInitialLoad && currentSlide) {
                 currentSlide.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
                 currentSlide.style.transform = direction === 'left' ? 'translateX(-100%)' : 'translateX(100%)';
@@ -122,12 +124,12 @@ class ProjectSlider {
                 currentSlide.classList.remove('active'); // Sinks z-index to 1
             }
 
-            // Animate in the next slide
+            // Animate IN the NEXT slide
             nextSlide.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
             nextSlide.style.transform = 'translateX(0)';
             nextSlide.style.opacity = '1';
             
-        }, 50);
+        }, 50); // 50ms is enough for the browser to catch up
 
         // 4. Update state and unlock animation
         this.currentSlide = index;
@@ -164,16 +166,12 @@ class ProjectSlider {
         
         // Touch events
         this.slider.addEventListener('touchstart', (e) => { this.handleTouchStart(e); this.stopAutoSlide(); }, { passive: true });
-        
         this.slider.addEventListener('touchmove', (e) => { this.handleTouchMove(e); }, { passive: false }); 
-        
         this.slider.addEventListener('touchend', () => { this.handleTouchEnd(); restartSlide(); });
         
         // Mouse events
         this.slider.addEventListener('mousedown', (e) => { this.handleMouseDown(e); this.stopAutoSlide(); });
-        
         this.slider.addEventListener('mousemove', (e) => { this.handleMouseMove(e); }); 
-        
         this.slider.addEventListener('mouseup', () => { this.handleMouseUp(); restartSlide(); });
         this.slider.addEventListener('mouseleave', () => { this.handleMouseUp(); restartSlide(); });
         
@@ -190,7 +188,7 @@ class ProjectSlider {
     
     handleTouchMove(e) {
         if (!this.touchStartX) return;
-        this.touchEndX = e.touches[0].clientX;
+        this.touchEndX = e.touches[0].clientX; 
         
         if (Math.abs(this.touchEndX - this.touchStartX) > 10) {
             e.preventDefault(); // Prevent vertical scroll
@@ -232,7 +230,7 @@ class ProjectSlider {
         this.slider.style.cursor = 'grab';
     } 
 
-    // Slider specific logic to enable animated scrollbar for project info sections
+    // This logic is specific to the slider, so it lives here
     enableAnimatedScrollbar() {
         const infos = this.slider.querySelectorAll('.project-info');
         infos.forEach(info => {
@@ -247,10 +245,10 @@ class ProjectSlider {
         });
     } 
 
-} 
+} // <--- ProjectSlider CLASS ENDS HERE
 
 
-// Sets up the home page button.
+// This function now *only* sets up the home page button.
 function setupHomePage() {
     const projectsSection = document.getElementById('projects');
     if (projectsSection) {
