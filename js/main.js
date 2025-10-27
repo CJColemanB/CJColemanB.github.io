@@ -1,10 +1,24 @@
-// js/main.js (UPDATED)
+// js/main.js
 
-// This class is now *only* responsible for the slider.
+/**
+ * A reusable class to create a touch-enabled, auto-playing project slider.
+ */
 class ProjectSlider {
-    constructor() {
-        this.slider = document.querySelector('.project-slider');
-        if (!this.slider) return;
+    /**
+     * Creates a new ProjectSlider instance.
+     * @param {string} selector - The CSS selector for the slider container (e.g., ".project-slider").
+     * @param {object} projectData - The data object to pull projects from (e.g., global 'projects').
+     * @param {string} type - The type of project ('coding' or 'non-coding') to determine card layout.
+     */
+    constructor(selector, projectData, type = 'coding') {
+        this.slider = document.querySelector(selector);
+        if (!this.slider) {
+            console.warn(`Slider element "${selector}" not found. Skipping initialization.`);
+            return;
+        }
+
+        this.projectData = projectData;
+        this.type = type; // 'coding' or 'non-coding'
 
         this.slides = [];
         this.currentSlide = -1;
@@ -20,29 +34,76 @@ class ProjectSlider {
     }
     
     init() {
-        // 'projects' is now a global variable from project-data.js
-        this.projectData = Object.values(projects);
+        // Get the values from the provided data object
+        const dataValues = Object.values(this.projectData || {});
         
-        this.createSlides();
+        this.createSlides(dataValues);
         
         if (this.slides.length > 0) {
             this.showSlide(0); // Show first slide *without* animation
             this.setupEventListeners();
             this.startAutoSlide();
             this.enableAnimatedScrollbar();
+        } else {
+            this.slider.innerHTML = '<p>No projects to display.</p>'; // Fallback message
         }
     }
     
-    createSlides() {
+    createSlides(dataValues) {
         if (!this.slider) return;
         
         this.slider.innerHTML = ''; // Clear any existing slides
         
-        this.projectData.forEach((project, index) => {
+        dataValues.forEach((project) => {
             const slide = document.createElement('div');
-            // All styling is handled by .project-slide class
             slide.className = 'project-slide';
             
+            // --- Dynamically generate meta and links based on type ---
+            let metaHTML = '';
+            let linksHTML = '';
+
+            if (this.type === 'coding') {
+                metaHTML = `
+                    <div class="meta-item">
+                        <h4>Role</h4>
+                        <p>${project.role}</p>
+                    </div>
+                    <div class="meta-item">
+                        <h4>Technologies</h4>
+                        <div class="meta-tags">
+                            ${project.technologies.map(tech => `<span class="tag">${tech}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <h4>Date</h4>
+                        <p>${project.date}</p>
+                    </div>
+                `;
+                if (project.code && project.code !== "#") {
+                    linksHTML = `
+                        <a href="${project.code}" target="_blank" class="project-details-btn">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                    `;
+                }
+            } else if (this.type === 'non-coding') {
+                // As per your request: no role, technologies -> skillsUsed, no code link
+                metaHTML = `
+                    <div class="meta-item">
+                        <h4>Skills</h4>
+                        <div class="meta-tags">
+                            ${project.skillsUsed.map(skill => `<span class="tag">${skill}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <h4>Date</h4>
+                        <p>${project.date}</p>
+                    </div>
+                `;
+                // linksHTML remains empty
+            }
+            
+            // --- Full slide HTML ---
             slide.innerHTML = `
                 <div class="project-gif-container">
                     <a href="project-template.html?id=${project.id}" aria-label="View project details for ${project.title}">
@@ -51,27 +112,11 @@ class ProjectSlider {
                 </div>
                 <div class="project-info">
                     <h3>${project.title}</h3>
-                    <p>${project.description}</p>
-                    <div class="project-meta"> 
-                        <div class="meta-item">
-                            <h4>Role</h4>
-                            <p>${project.role}</p>
-                        </div>
-                        <div class="meta-item">
-                            <h4>Technologies</h4>
-                            <div class="meta-tags">
-                                ${project.technologies.map(tech => `<span class="tag">${tech}</span>`).join('')}
-                            </div>
-                        </div>
-                        <div class="meta-item">
-                            <h4>Date</h4>
-                            <p>${project.date}</p>
-                        </div>
+                    <p>${project.tagline}</p> <div class="project-meta"> 
+                        ${metaHTML}
                     </div>
                     <div class="project-links">
-                        <a href="${project.code}" target="_blank" class="project-details-btn">
-                            <i class="fab fa-github"></i> View Code
-                        </a>
+                        ${linksHTML}
                     </div>
                 </div>
             `;
@@ -82,7 +127,7 @@ class ProjectSlider {
         // Ensure the slider container has the correct positioning
         this.slider.style.position = 'relative';
         this.slider.style.overflow = 'hidden';
-        this.slider.style.minHeight = '500px'; // Adjust as needed
+        this.slider.style.minHeight = '550px'; // Adjust as needed
     }
     
     showSlide(index, direction = 'left') {
@@ -99,7 +144,7 @@ class ProjectSlider {
         const currentSlide = this.currentSlide >= 0 ? this.slides[this.currentSlide] : null;
         const nextSlide = this.slides[index];
         
-        // --- New Animation Logic (Cross-fade) ---
+        // --- Animation Logic (Cross-fade/Slide) ---
 
         // 1. Set up the NEXT slide's starting position
         if (!isInitialLoad) {
@@ -291,7 +336,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Page-Specific Logic ---
     if (window.location.pathname.includes('projects.html')) {
         // --- PROJECTS PAGE ---
-        new ProjectSlider();
+        
+        // Initialize the first slider for CODING projects
+        // (Check if 'projects' data exists first)
+        if (typeof projects !== 'undefined' && Object.keys(projects).length > 0) {
+            new ProjectSlider('.project-slider', projects, 'coding');
+        }
+        
+        // Initialize the second slider for NON-CODING projects
+        // (Check if 'nonCodingProjects' data exists first)
+        if (typeof nonCodingProjects !== 'undefined' && Object.keys(nonCodingProjects).length > 0) {
+            new ProjectSlider('.non-coding-project-slider', nonCodingProjects, 'non-coding');
+        }
         
     } else if (document.getElementById('projects')) {
         // --- HOME PAGE (index.html) ---

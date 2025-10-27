@@ -1,4 +1,6 @@
 // js/project-data.js
+
+// === CODING PROJECTS ===
 const projects = {
     'project1': {
         id: 'project1',
@@ -82,5 +84,27 @@ const projects = {
                  </ul>`,
         thanks: `<p>Thanks to Streatham & Clapham High School for the opportunity to implement this.</p>`
     }
-    // Add new projects here
+};
+
+// === NON-CODING PROJECTS ===
+const nonCodingProjects = {
+    'ncProject1': {
+        id: 'ncProject1',
+        title: "Sample Non-Coding Project",
+        tagline: "A sample project to demonstrate the new category.",
+        description: "<p>This is a placeholder for a non-coding project, such as a research paper, a major presentation, or a leadership role in an organization.</p>",
+        gif: "Images/Projects/placeholder.png", // Use a relevant image or placeholder
+        // 'demo' and 'code' are removed
+        skillsUsed: ["Public Speaking", "Research", "Leadership", "Team Management"], // Replaces 'technologies'
+        // 'role' is removed
+        date: "August 2025",
+        skills: `<h3>Key Responsibilities & Achievements</h3>
+                 <ul>
+                    <li>Led a team of 5 to organize a campus-wide event.</li>
+                    <li>Conducted extensive research and presented findings.</li>
+                    <li>Managed project budget and timelines effectively.</li>
+                 </ul>`,
+        // 'thanks' is removed
+    }
+    // Add new non-coding projects here
 };

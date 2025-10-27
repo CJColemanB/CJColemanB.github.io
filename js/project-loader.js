@@ -10,8 +10,12 @@ const projectId = urlParams.get('id');
 
 // Load project data
 function loadProject() {
-    // 'projects' is loaded from project-data.js
-    const project = projects[projectId]; 
+    // 'projects' and 'nonCodingProjects' are loaded from project-data.js
+    let project = projects[projectId];
+    
+    if (!project && typeof nonCodingProjects !== 'undefined') {
+        project = nonCodingProjects[projectId];
+    }
     
     if (!project) {
         // Redirect if project ID is invalid
@@ -34,15 +38,41 @@ function loadProject() {
     }
     
     // --- Update project meta ---
-    document.getElementById('project-role').textContent = project.role;
+
+    // Update Role (and hide if it doesn't exist)
+    const metaRole = document.getElementById('meta-role');
+    if (metaRole) {
+        if (project.role) {
+            document.getElementById('project-role').textContent = project.role;
+        } else {
+            metaRole.style.display = 'none'; // Hide role meta item
+        }
+    }
+
     document.getElementById('project-date').textContent = project.date;
     
-    // Update technologies
-    const techContainer = document.getElementById('project-technologies');
-    if (techContainer) {
-        techContainer.innerHTML = project.technologies
-            .map(tech => `<span class="tag">${tech}</span>`)
-            .join('');
+    // Update technologies or skills used
+    const metaTech = document.getElementById('meta-technologies');
+    if (metaTech) {
+        const techContainer = document.getElementById('project-technologies');
+        const techLabel = document.getElementById('technologies-label');
+
+        if (project.technologies && project.technologies.length > 0) {
+            // This is a coding project with technologies
+            techLabel.textContent = 'Technologies';
+            techContainer.innerHTML = project.technologies
+                .map(tech => `<span class="tag">${tech}</span>`)
+                .join('');
+        } else if (project.skillsUsed && project.skillsUsed.length > 0) {
+            // This is a non-coding project with skillsUsed
+            techLabel.textContent = 'Skills'; // Changed label as requested
+            techContainer.innerHTML = project.skillsUsed
+                .map(skill => `<span class="tag">${skill}</span>`)
+                .join('');
+        } else {
+            // No technologies or skillsUsed, hide the whole section
+            metaTech.style.display = 'none';
+        }
     }
     
     // Safely update *only* the 'source-code' button
@@ -82,7 +112,10 @@ function loadProject() {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
-    if (projectId && typeof projects !== 'undefined') {
+    // Check if either project data object has loaded
+    const dataLoaded = typeof projects !== 'undefined' || typeof nonCodingProjects !== 'undefined';
+
+    if (projectId && dataLoaded) {
         loadProject();
     } else if (!projectId) {
         // Redirect to home if no project ID is provided
