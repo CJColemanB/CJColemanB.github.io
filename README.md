@@ -1,6 +1,6 @@
 # CJColemanB.github.io
 - The link to the website can be found [here](https://cjcolemanb.github.io)
-- Depending on permissions on wifi, there may be issues in regards to the CSS aspect of the website. Would strongly recommend using a home wifi, or mobile data to view the page at its fullest. 
+- Depending on permissions on wifi, there may be issues in regards to the CSS aspect of the website. Would strongly recommend using a home wifi, mobile data, or a VPN to view the page at its fullest. 
 
 ## Technologies Used
 - Mainly used HTML/CSS/Javascript due to the nature of the website being a simple portfolio website. Extensive backend wasn't a necessity, so a simple HTML website with focus on CSS styling was the ideal.
