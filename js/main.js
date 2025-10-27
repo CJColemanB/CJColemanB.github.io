@@ -1,5 +1,3 @@
-// js/main.js
-
 /**
  * A reusable class to create a touch-enabled, auto-playing project slider.
  */
@@ -87,7 +85,6 @@ class ProjectSlider {
                     `;
                 }
             } else if (this.type === 'non-coding') {
-                // As per your request: no role, technologies -> skillsUsed, no code link
                 metaHTML = `
                     <div class="meta-item">
                         <h4>Skills</h4>
@@ -127,7 +124,7 @@ class ProjectSlider {
         // Ensure the slider container has the correct positioning
         this.slider.style.position = 'relative';
         this.slider.style.overflow = 'hidden';
-        this.slider.style.minHeight = '550px'; // Adjust as needed
+        this.slider.style.minHeight = '650px'; // Adjust as needed
     }
     
     showSlide(index, direction = 'left') {
@@ -289,8 +286,7 @@ class ProjectSlider {
 
 } // <--- ProjectSlider CLASS ENDS HERE
 
-
-// This function now *only* sets up the home page button.
+// --- HOME PAGE SETUP ---
 function setupHomePage() {
     const projectsSection = document.getElementById('projects');
     if (projectsSection) {

@@ -1,5 +1,3 @@
-// js/project-data.js
-
 // === CODING PROJECTS ===
 const projects = {
     'project1': {
@@ -90,13 +88,11 @@ const projects = {
 const nonCodingProjects = {
     'ncProject1': {
         id: 'ncProject1',
-        title: "Sample Non-Coding Project",
-        tagline: "A sample project to demonstrate the new category.",
-        description: "<p>This is a placeholder for a non-coding project, such as a research paper, a major presentation, or a leadership role in an organization.</p>",
-        gif: "Images/Projects/placeholder.png", // Use a relevant image or placeholder
-        // 'demo' and 'code' are removed
-        skillsUsed: ["Public Speaking", "Research", "Leadership", "Team Management"], // Replaces 'technologies'
-        // 'role' is removed
+        title: "RRS40MUN Conference",
+        tagline: "Hosted Royal Russell's 40th Model United Nations Conference.",
+        description: "<p>Built my own computer with a few friends during my first year at university This inclded all the normal parts of a computer, such as CPU, GPU, HDD, SSD, etc. This also included the startup software, such as setting up Windows 11.</p>",
+        gif: "Images/Projects/placeholder.png", 
+        skillsUsed: ["Public Speaking", "Research", "Leadership", "Team Management"], 
         date: "August 2025",
         skills: `<h3>Key Responsibilities & Achievements</h3>
                  <ul>
@@ -104,7 +100,21 @@ const nonCodingProjects = {
                     <li>Conducted extensive research and presented findings.</li>
                     <li>Managed project budget and timelines effectively.</li>
                  </ul>`,
-        // 'thanks' is removed
+    },
+    'ncProject2': {
+        id: 'ncProject2',
+        title: "Homemade Computer",
+        tagline: "Built my own computer from home with typical parts.",
+        description: "<p>Built my own computer with a few friends during my first year at university This inclded all the normal parts of a computer, such as CPU, GPU, HDD, SSD, etc. This also included the startup software, such as setting up Windows 11.</p>",
+        gif: "Images/Projects/placeholder.png", 
+        skillsUsed: ["Teamwork", "Research", "Hardware Development"], 
+        date: "February 2024",
+        skills: `<h3>Key Responsibilities & Achievements</h3>
+                 <ul>
+                    <li>Led a team of 5 to organize a campus-wide event.</li>
+                    <li>Conducted extensive research and presented findings.</li>
+                    <li>Managed project budget and timelines effectively.</li>
+                 </ul>`,
     }
     // Add new non-coding projects here
 };

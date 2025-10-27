@@ -335,7 +335,8 @@ a:hover {
     padding: 0 4rem;
 }
 
-.project-slider {
+.project-slider,
+.non-coding-project-slider {
     border-radius: var(--border-radius);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     position: relative;
@@ -350,7 +351,8 @@ a:hover {
     overflow: hidden; 
 }
 
-.project-slider:active {
+.project-slider:active,
+.non-coding-project-slider:active {
     cursor: grabbing;
 }
 
@@ -1017,7 +1019,8 @@ footer p {
         padding: 0 1.5rem;
     }
     
-    .project-slider {
+    .project-slider
+    .non-coding-project-slider {
         min-height: 550px; 
     }
     
@@ -1061,14 +1064,16 @@ footer p {
         font-size: 1.5rem;
     }
 
-    .project-slider {
+    .project-slider
+    .non-coding-project-slider {
         min-height: 600px;
     }
 }
 
 /* --- Mobile Portrait Scrollbar (Project Slider) --- */
 @media (max-width: 480px) and (orientation: portrait) {
-    .project-slider {
+    .project-slider
+    .non-coding-project-slider {
         min-height: 600px; 
     }
 
