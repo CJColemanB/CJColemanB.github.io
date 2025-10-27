@@ -91,14 +91,13 @@ const nonCodingProjects = {
         title: "RRS40MUN Conference",
         tagline: "Hosted Royal Russell's 40th Model United Nations Conference.",
         description: "<p>Built my own computer with a few friends during my first year at university This inclded all the normal parts of a computer, such as CPU, GPU, HDD, SSD, etc. This also included the startup software, such as setting up Windows 11.</p>",
-        gif: "Images/Projects/placeholder.png", 
-        skillsUsed: ["Public Speaking", "Research", "Leadership", "Team Management"], 
-        date: "August 2025",
+        gif: "Images/Projects/rrsmun.png", 
+        skillsUsed: ["Public Speaking", "Research", "Leadership", "Team Management", "Politics", "Event Planning", "Event Planning"], 
+        date: "October 2022",
         skills: `<h3>Key Responsibilities & Achievements</h3>
                  <ul>
-                    <li>Led a team of 5 to organize a campus-wide event.</li>
-                    <li>Conducted extensive research and presented findings.</li>
-                    <li>Managed project budget and timelines effectively.</li>
+                    <li>Acted as a President of General Assembly, working with over a dozen other students to host hundreds of students from international origins over the course of 5 days.</li>
+                    <li>Extensive research regarding topics, team management, as well as other administrative tasks were the bulk of my responsibilities.</li>
                  </ul>`,
     },
     'ncProject2': {
@@ -111,9 +110,8 @@ const nonCodingProjects = {
         date: "February 2024",
         skills: `<h3>Key Responsibilities & Achievements</h3>
                  <ul>
-                    <li>Led a team of 5 to organize a campus-wide event.</li>
-                    <li>Conducted extensive research and presented findings.</li>
-                    <li>Managed project budget and timelines effectively.</li>
+                    <li>Worked with a few friends to create my own computer from scratch.</li>
+                    <li>Conducted research regarding what parts worked well effectively, what parts were worth their price, etc.</li>
                  </ul>`,
     }
     // Add new non-coding projects here
