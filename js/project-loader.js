@@ -1,5 +1,3 @@
-// js/project-loader.js (NEW, SIMPLIFIED VERSION)
-
 // Set current year in footer
 const currentYearEl = document.getElementById('current-year');
 if (currentYearEl) {
@@ -47,7 +45,6 @@ function loadProject() {
             .join('');
     }
     
-    // --- THIS IS THE FIX ---
     // Safely update *only* the 'source-code' button
     const codeLink = document.getElementById('source-code');
     if (codeLink) {
@@ -58,8 +55,7 @@ function loadProject() {
             codeLink.style.display = 'none'; // Hide if no link
         }
     }
-    
-    // --- THIS IS THE DATA THAT WASN'T LOADING ---
+
     // Update content sections
     const descriptionEl = document.getElementById('project-description');
     if (descriptionEl && project.description) {
