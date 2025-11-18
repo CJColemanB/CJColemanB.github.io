@@ -586,62 +586,96 @@ a:hover {
     align-items: center;
 }
 
-/* Experience Section */
+/* ====================================
+   Experience Section
+   ==================================== */
 .timeline {
     position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 0;
+    max-width: 900px;
+    margin: 3rem auto 0;
+    padding: 40px 0;
 }
 
+/* The central timeline line */
 .timeline::after {
     content: '';
     position: absolute;
-    width: 2px;
-    background: var(--accent-gradient); 
+    width: 4px;
+    background: var(--secondary-color); /* Use a subtle theme color */
     top: 0;
     bottom: 0;
     left: 50%;
-    margin-left: -1px;
+    margin-left: -2px;
 }
 
 .timeline-item {
     padding: 10px 40px;
     position: relative;
     width: 50%;
-    margin-bottom: 3rem;
+    box-sizing: border-box;
 }
 
+/* The dot on the timeline */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    top: 25px;
+    z-index: 1;
+    box-shadow: 0 0 0 4px rgba(142, 68, 173, 0.2);
+}
+
+/* Odd items (1, 3, etc) - LEFT side */
 .timeline-item:nth-child(odd) {
     left: 0;
+    padding-right: 30px;
+    text-align: right;
 }
 
+.timeline-item:nth-child(odd)::after {
+    right: -10px; /* (20px / 2) */
+    transform: translateX(50%);
+}
+
+/* Even items (2, 4, etc) - RIGHT side */
 .timeline-item:nth-child(even) {
     left: 50%;
+    padding-left: 30px;
+    text-align: left;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -10px; /* (20px / 2) */
+    transform: translateX(-50%);
 }
 
 .timeline-content {
-    padding: 2rem;
-    background: var(--glass-bg); 
-    backdrop-filter: var(--glass-blur); 
+    padding: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
     border-radius: var(--border-radius);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     position: relative;
+    cursor: pointer;
     transition: var(--transition);
 }
 
 .timeline-content:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(142, 68, 173, 0.4);
 }
 
 .timeline-content h3 {
     color: #fff;
+    margin-top: 0;
     margin-bottom: 0.5rem;
 }
 
 .timeline-content h4 {
-    color: #8e44ad;
+    color: var(--accent-color);
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
 }
@@ -649,34 +683,89 @@ a:hover {
 .timeline-content .date {
     color: var(--text-secondary);
     font-size: 0.9rem;
-    margin-bottom: 1rem;
-    display: block;
+    margin-bottom: 10px;
 }
 
-.timeline-content ul {
-    padding-left: 1.5rem;
+/* Toggle Icon (+) */
+.toggle-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--accent-color);
+    transition: transform 0.3s ease;
+    -webkit-user-select: none; /* Prevent text selection */
+    -ms-user-select: none;
+    user-select: none;
 }
 
-.timeline-content ul li {
-    margin-bottom: 0.5rem;
+.timeline-item:nth-child(odd) .toggle-icon {
+    right: auto;
+    left: 20px;
+}
+
+.timeline-content.expanded .toggle-icon {
+    transform: rotate(45deg);
+}
+
+/* Dropdown Details (Hidden by default) */
+.timeline-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    /* Ensure text aligns with the rest of the card */
+    text-align: left;
+}
+
+.timeline-details ul {
+    list-style-type: disc;
+    margin: 0;
+    padding-left: 20px; /* Indent list */
     color: var(--text-secondary);
 }
 
-.timeline-item::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: #8e44ad;
-    border-radius: 50%;
-    top: 30px;
-    z-index: 1;
-    right: -10px;
-    box-shadow: 0 0 0 4px rgba(142, 68, 173, 0.2);
+.timeline-details li {
+    margin-bottom: 8px;
+    line-height: 1.5;
 }
 
-.timeline-item:nth-child(even)::after {
-    left: -10px;
+/* When card is clicked, add 'expanded' class */
+.timeline-content.expanded .timeline-details {
+    max-height: 500px; /* Set to a large enough value */
+    margin-top: 15px;
+    transition: max-height 0.5s ease-in;
+}
+
+/* Responsive: Stack on top for small screens */
+@media screen and (max-width: 768px) {
+    .timeline::after {
+        left: 20px; /* Move line to the left */
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 50px; /* Space for content */
+        padding-right: 15px;
+    }
+
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: 0; /* Stack them */
+        text-align: left; /* Force all text left */
+        padding-left: 50px;
+        padding-right: 15px;
+    }
+
+    .timeline-item::after {
+        left: 10px; /* Align dot with the line */
+    }
+    
+    .toggle-icon,
+    .timeline-item:nth-child(odd) .toggle-icon {
+        right: 20px;
+        left: auto; /* Override odd-child rule */
+    }
 }
 
 /* Hobbies Section */

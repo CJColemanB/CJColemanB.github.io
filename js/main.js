@@ -345,9 +345,22 @@ document.addEventListener('DOMContentLoaded', function() {
             new ProjectSlider('.non-coding-project-slider', nonCodingProjects, 'non-coding');
         }
         
-    } else if (document.getElementById('projects')) {
+    } else if (document.getElementById('experience')) { // <-- **FIXED THIS LINE**
         // --- HOME PAGE (index.html) ---
-        setupHomePage();
+        // setupHomePage(); // <-- **REMOVED THIS LINE**
+
+        // --- Experience Timeline Dropdown ---
+        const experienceCards = document.querySelectorAll('.timeline-content');
+
+        experienceCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Prevent card from closing if user clicks a link inside
+                if (e.target.tagName === 'A') return;
+                
+                // Toggle the 'expanded' class on the clicked card
+                card.classList.toggle('expanded');
+            });
+        });
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
