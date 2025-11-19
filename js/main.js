@@ -393,3 +393,71 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('scroll', animateOnScroll);
     }
 });
+
+/*
+=================================
+ CV Page Flipper Logic
+=================================
+*/
+// We wrap this in a 'DOMContentLoaded' listener to make sure
+// the script runs after the page has loaded.
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Check if the CV image element exists on the current page
+    const cvImage = document.getElementById('cv-image');
+    
+    // If it exists, run the CV flipper code
+    if (cvImage) {
+        const prevBtn = document.getElementById('prev-page');
+        const nextBtn = document.getElementById('next-page');
+
+        // --- CONFIGURE YOUR PAGES HERE ---
+        const cvPages = [
+            'files/CJ_Coleman_Benjamin_CV-1.png',
+            'files/CJ_Coleman_Benjamin_CV-2.png'
+            // If you ever have a 3-page CV, just add:
+            // 'files/cv-page-3.png'
+        ];
+        // ---------------------------------
+
+        let currentPage = 0; // 0 is the first page
+
+        function updateCVView() {
+            // Update the image source and alt text
+            cvImage.src = cvPages[currentPage];
+            cvImage.alt = `CV Page ${currentPage + 1}`;
+            
+            // Show or hide the 'Previous' button
+            if (currentPage === 0) {
+                prevBtn.style.display = 'none'; // Hide on first page
+            } else {
+                prevBtn.style.display = 'block';
+            }
+
+            // Show or hide the 'Next' button
+            if (currentPage === cvPages.length - 1) {
+                nextBtn.style.display = 'none'; // Hide on last page
+            } else {
+                nextBtn.style.display = 'block';
+            }
+        }
+
+        // Add click listeners
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < cvPages.length - 1) {
+                currentPage++;
+                updateCVView();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 0) {
+                currentPage--;
+                updateCVView();
+            }
+        });
+
+        // Run the function once on load to set the initial state
+        updateCVView();
+    }
+});
