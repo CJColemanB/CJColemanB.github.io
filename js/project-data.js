@@ -102,7 +102,7 @@ const nonCodingProjects = {
     },
     'ncProject2': {
         id: 'ncProject2',
-        title: "Homemade Computer",
+        title: "Custom Computer",
         tagline: "Built my own computer from home with typical parts.",
         description: "<p>Built my own computer with a few friends during my first year at university This inclded all the normal parts of a computer, such as CPU, GPU, HDD, SSD, etc. This also included the startup software, such as setting up Windows 11.</p>",
         gif: "Images/Projects/placeholder.png", 
