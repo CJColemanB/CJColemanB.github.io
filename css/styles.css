@@ -832,6 +832,20 @@ a:hover {
     transform: scale(1.05);
 }
 
+/* --- Hobby Card Link Styles --- */
+
+.hobby-card-link {
+  text-decoration: none; 
+  color: inherit; 
+  display: block; 
+  transition: transform 0.3s ease;
+}
+
+.hobby-card-link:hover .hobby-card {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
 /* Contact Section */
 .contact-content {
     display: flex;
