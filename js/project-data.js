@@ -113,6 +113,20 @@ const nonCodingProjects = {
                     <li>Worked with a few friends to create my own computer from scratch.</li>
                     <li>Conducted research regarding what parts worked well effectively, what parts were worth their price, etc.</li>
                  </ul>`,
+    },
+    'ncProject3': {
+        id: 'ncProject3',
+        title: "Second Custom Computer",
+        tagline: "Built my own computer from home with high-end parts.",
+        description: "<p>Built a second computer, this time solo, as well as with high-end parts to allow for gaming and video editing.</p>",
+        gif: "Images/Projects/placeholder.png",
+        skillsUsed: ["Research", "Hardware Development"],
+        date: "November 2025",
+        skills: `<h3>Key Responsibilities & Achievements</h3>
+                    <ul>
+                        <li>Researched high-end parts to ensure compatibility and performance for gaming and video editing.</li>
+                        <li>Successfully assembled the computer solo, demonstrating technical proficiency and problem-solving skills.</li>
+                    </ul>`,
     }
     // Add new non-coding projects here
 };
