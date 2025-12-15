@@ -415,7 +415,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const cvPages = [
             'files/CJ_Coleman_Benjamin_CV-1.png',
             'files/CJ_Coleman_Benjamin_CV-2.png'
-            // If you ever have a 3-page CV, just add:
             // 'files/cv-page-3.png'
         ];
         // ---------------------------------
